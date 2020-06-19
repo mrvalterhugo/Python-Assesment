@@ -25,6 +25,7 @@ def list_users():
     with open('data.txt') as f: file_r = f.readlines()
     for l in file_r: print(l)
     input("Press any key to go back....")
+
 #### This function will add data into the file ####
 def add_user():
     while True:
@@ -58,6 +59,7 @@ def add_user():
                 return
         else:
             print("User has not been saved, please try again.")
+
 #### This will list the users and remove users by ID ####
 def remove_user():
     while True:
@@ -65,6 +67,7 @@ def remove_user():
         with open('data.txt') as f: file_r = f.readlines()
         for l in file_r: print(l)
 ################################
+        #### This will ask the user to type an ID to be removed or quit to main menu
         while True:
             print('\nChoose an user ID to remove or type "QUIT" to go back to the main menu\n')
             UID = input(">>>>")
@@ -87,10 +90,11 @@ def remove_user():
         shutil.copy("datanew.txt", "data.txt")
         print("User ID", UID, "has been removed!\n")
         input("Press any key to start again.\n>>>>")
+
 #### This will search by a keyword ####
 def user_info():
     while True:
-        ##### Menu
+        ##### Menu to select which field the user wants to search
         while True:
             print('Please choose an field to search by:\n',
                   "1 - By ID\n",
@@ -128,8 +132,8 @@ def user_info():
                 input("This is not a valid option. Press any key to try again!")
             else:
                 input("This is not a valid option. Press any key to try again!")
-
-        print("Please type the informatio you are looking for\n")
+        #### Ask the user the pattern to search for
+        print("Please type the information you are looking for\n")
         pattern = input(">>>>")
         file1 = open('data.txt', 'r')
         file_read = csv.reader(file1, delimiter='\t')
@@ -143,7 +147,7 @@ def user_info():
 
 def update_info():
     while True:
-        ##### Menu
+        ##### Menu to select which field the user wants to modify
         while True:
             print('Please choose an field to modify:\n',
                     "1 - Name\n",
@@ -179,16 +183,18 @@ def update_info():
             else:
                 input("This is not a valid option. Press any key to try again!")
         field = int(field)
+        #### This will list the file, so the user can select the ID to be updated
         while True:
-            print("Choose an person ID to modify:")
             data = open("data.txt", 'r')
             for u in data:
                 print(u)
+            print("Choose an user ID to modify:")
             UID = input(">>>>")
             if not UID.isdigit():
                 input("This is not a valid ID. Press any key to try again!")
             else:
                 break
+        #### User enters the value to replace the old one
         value = input("Please type the new value >>>> ")
         UID = int(UID)
         with open('data.txt', 'r') as file1:
@@ -208,6 +214,7 @@ def update_info():
 
 #### This will backup the data file ####
 def backup():
+    #### The new file will have the day and time on its name
     now = str(date.today())
     backup_name = "databk" + now + ".txt"
     shutil.copy("data.txt", backup_name)
