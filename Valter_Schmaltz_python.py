@@ -39,8 +39,11 @@ def add_user():
             check2 = input('Type any key to add another user or "QUIT" to exit...')
             if check2 == "QUIT" or check2 == "quit":
                 return
+        elif check == "QUIT" or check == "quit":
+            return
         else:
-            print("User has not been saved, please try again.")
+            print("User has not been saved, press ENTER to try again.")
+            input(">>>>")
 
 #### This will list the users and remove users by ID ####
 def remove_user():
