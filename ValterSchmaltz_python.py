@@ -151,24 +151,15 @@ def update_info():
                     "6 - Phone\n",
                     "7 - Go Back to Main Menu\n")
             field = input(">>>>")
-            if field == "7":
-                return
-            elif field == "1":
-                break
-            elif field == "2":
-                break
-            elif field == "3":
-                break
-            elif field == "4":
-                break
-            elif field == "5":
-                break
-            elif field == "6":
-                break
-            elif not field.isdigit():
-                input("This is not a valid option. Press any key to try again!")
-            else:
-                input("This is not a valid option. Press any key to try again!")
+            if field == "7": return
+            elif field == "1": break
+            elif field == "2": break
+            elif field == "3": break
+            elif field == "4": break
+            elif field == "5": break
+            elif field == "6": break
+            elif not field.isdigit(): input("This is not a valid option. Press any key to try again!")
+            else: input("This is not a valid option. Press any key to try again!")
         field = int(field)
         #### This will list the file, so the user can select the ID to be updated
         while True:
