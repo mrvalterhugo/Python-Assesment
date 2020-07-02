@@ -154,22 +154,16 @@ def update_info():
             if field == "7":
                 return
             elif field == "1":
-                key = 1
                 break
             elif field == "2":
-                key = 2
                 break
             elif field == "3":
-                key = 3
                 break
             elif field == "4":
-                key = 4
                 break
             elif field == "5":
-                key = 5
                 break
             elif field == "6":
-                key = 6
                 break
             elif not field.isdigit():
                 input("This is not a valid option. Press any key to try again!")
@@ -195,7 +189,7 @@ def update_info():
             file_write = open('datanew.txt', 'w')
             for l in file_read:
                 if UID == int(l[0]):
-                    l[key] = value
+                    l[field] = value
                 for word in l:
                     file_write.write(word)
                     file_write.write('\t')
