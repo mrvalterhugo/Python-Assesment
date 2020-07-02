@@ -5,7 +5,7 @@ Python Assessment - Amazon Career - Cloud Support Engineer Course
 - Version 1.0
 - This is a program to manipulate a data file,
 listing , adding/removing/updating and backing up data.
-- The file data.txt needs to exist in the same directory as this program.
+- The file python_assessment.txt needs to exist in the same directory as this program.
 - Data is separeted by tabs.
 -  The program is divided by functions, which are called from the Main Menu:
 - list_users()
