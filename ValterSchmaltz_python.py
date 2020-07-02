@@ -3,22 +3,22 @@ import csv
 import os
 from datetime import date
 
-data = "python_assessment.txt"
+data_file = "python_assessment.txt"
 
 #### This function reads and prints the data inside the file #####
 def list_users():
-    global data
-    with open(data) as f: file_r = f.readlines()
+    global data_file
+    with open(data_file) as f: file_r = f.readlines()
     for l in file_r: print(l)
     input("Press any key to go back....")
 
 #### This function will add data into the file ####
 def add_user():
-    global data
+    global data_file
     data = "python_assessment.txt"
     while True:
         #### This will check and create the next ID ####
-        with open(data, 'r') as file:
+        with open(data_file, 'r') as file:
             file_lines = csv.reader(file, delimiter='\t')
             for n in file_lines:
                 ID = int(n[0])
@@ -35,7 +35,7 @@ def add_user():
         check = input('Is the above correct? (Y/N) or "Q" to go back to the main menu\n>>>>')
         #### This will insert the data into the file ####
         if check == "y" or check == "Y":
-            write_line = open(data, 'a')
+            write_line = open(data_file, 'a')
             for word in data:
                 write_line.write(word)
                 write_line.write('\t')
@@ -53,10 +53,10 @@ def add_user():
 
 #### This will list the users and remove users by ID ####
 def remove_user():
-    global data
+    global data_file
     while True:
         #### List user database
-        with open(data) as f: file_r = f.readlines()
+        with open(data_file) as f: file_r = f.readlines()
         for l in file_r: print(l)
         #### This will ask the user to type an ID to be removed or quit to main menu
         while True:
@@ -68,7 +68,7 @@ def remove_user():
                 return
             else: break
         UID = int(UID)
-        with open(data, 'r') as file1:
+        with open(data_file, 'r') as file1:
             file_read = csv.reader(file1, delimiter='\t')
             file_write = open('datanew.txt', 'w')
             for l in file_read:
@@ -78,13 +78,14 @@ def remove_user():
                         file_write.write('\t')
                     file_write.write('\n')
             file_write.close()
-        shutil.copy("datanew.txt", "data.txt")
+        shutil.copy("datanew.txt", data_file)
         print("User ID", UID, "has been removed!\n")
-        input("Press any key to start again.\n>>>>")
+        check = input('Press any key to start again or "Q" to quit...')
+        if check == "Q" or check == "q": return
 
 #### This will search by a keyword ####
 def user_info():
-    global data
+    global data_file
     while True:
         ##### Menu to select which field the user wants to search
         while True:
@@ -127,18 +128,18 @@ def user_info():
         #### Ask the user the pattern to search for
         print("Please type the information you are looking for\n")
         pattern = input(">>>>")
-        file1 = open(data, 'r')
+        file1 = open(data_file, 'r')
         file_read = csv.reader(file1, delimiter='\t')
         for l in file_read:
             if pattern.lower() in l[key].lower():
                 print(l)
-        print("Press anyhting to try again!")
-        input(">>>>")
+        check = input('Press any key to start again or "Q" to quit...')
+        if check == "Q" or check == "q": return
         file1.close()
 
 #### This will update user info ####
 def update_info():
-    global data
+    global data_file
     while True:
         ##### Menu to select which field the user wants to modify
         while True:
@@ -178,7 +179,7 @@ def update_info():
         field = int(field)
         #### This will list the file, so the user can select the ID to be updated
         while True:
-            data = open(data, 'r')
+            data = open(data_file, 'r')
             for u in data:
                 print(u)
             print("Choose an user ID to modify:")
@@ -190,27 +191,28 @@ def update_info():
         #### User enters the value to replace the old one
         value = input("Please type the new value >>>> ")
         UID = int(UID)
-        with open(data, 'r') as file1:
+        with open(data_file, 'r') as file1:
             file_read = csv.reader(file1, delimiter='\t')
             file_write = open('datanew.txt', 'w')
             for l in file_read:
                 if UID == int(l[0]):
-                    l[field] = value
+                    l[key] = value
                 for word in l:
                     file_write.write(word)
                     file_write.write('\t')
                 file_write.write('\n')
             file_write.close()
-        shutil.copy("datanew.txt", data)
-        input("User info has been updated! Press any key to start again...")
+        shutil.copy("datanew.txt", data_file)
+        check = input('User info has been updated! Press any key to start again or "Q" to quit...')
+        if check == "Q" or check == "q": return
 
 #### This will backup the data file ####
 def backup():
-    global data
+    global data_file
     #### The new file will have the day and time on its name
     now = str(date.today())
     backup_name = "databk" + now + ".txt"
-    shutil.copy(data, backup_name)
+    shutil.copy(data_file, backup_name)
     print("Backup saved to", backup_name, "successfully")
     input("Press any key to go back to the main menu....")
 
