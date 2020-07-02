@@ -15,14 +15,13 @@ def list_users():
 #### This function will add data into the file ####
 def add_user():
     global data_file
-    data = "python_assessment.txt"
     while True:
         #### This will check and create the next ID ####
         with open(data_file, 'r') as file:
             file_lines = csv.reader(file, delimiter='\t')
-            for n in file_lines:
-                ID = int(n[0])
-        ID = str(ID + 1)
+            listing = list(file_lines)
+            line_id = listing[-1]
+            ID = str(int(line_id[0]) + 1)
         #### This will ask the user to enter the data, also go back to main menu at anytime ####
         name = str(input("Enter the first name of the new user: "))
         surname = str(input("Enter the surname of the new user: "))
