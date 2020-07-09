@@ -162,8 +162,8 @@ def update_info():
         field = int(field)
         #### This will list the file, so the user can select the ID to be updated
         while True:
-            data = open(data_file, 'r')
-            print(data.read())
+            with open(data_file) as file:
+                print(file.read())
             print("Choose an user ID to modify:")
             UID = input(">>>>")
             if not UID.isdigit():
