@@ -11,9 +11,6 @@ def list_users():
         print(file.read())
     input("Press any key to go back....")
 
-
-
-
 #### This function will add data into the file ####
 def add_user():
     global data_file
