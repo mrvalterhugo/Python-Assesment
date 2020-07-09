@@ -7,10 +7,12 @@ data_file = "python_assessment.txt"
 
 #### This function reads and prints the data inside the file #####
 def list_users():
-    global data_file
-    with open(data_file) as f: file_r = f.readlines()
-    for l in file_r: print(l)
+    with open(data_file) as file:
+        print(file.read())
     input("Press any key to go back....")
+
+
+
 
 #### This function will add data into the file ####
 def add_user():
@@ -55,8 +57,8 @@ def remove_user():
     global data_file
     while True:
         #### List user database
-        with open(data_file) as f: file_r = f.readlines()
-        for l in file_r: print(l)
+        with open(data_file) as file:
+            print(file.read())
         #### This will ask the user to type an ID to be removed or quit to main menu
         while True:
             print('\nChoose an user ID to remove or type "Q" to go back to the main menu\n')
@@ -164,8 +166,7 @@ def update_info():
         #### This will list the file, so the user can select the ID to be updated
         while True:
             data = open(data_file, 'r')
-            for u in data:
-                print(u)
+            print(data.read())
             print("Choose an user ID to modify:")
             UID = input(">>>>")
             if not UID.isdigit():
