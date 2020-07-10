@@ -66,17 +66,21 @@ def remove_user():
                 return
             else: break
         UID = int(UID)
-        with open(data_file, 'r') as file1:
-            file_read = csv.reader(file1, delimiter='\t')
-            file_write = open('datanew.txt', 'w')
-            for l in file_read:
-                if UID != int(l[0]):
-                    for word in l:
-                        file_write.write(word)
-                        file_write.write('\t')
-                    file_write.write('\n')
-            file_write.close()
-        shutil.copy("datanew.txt", data_file)
+        file = open(data_file, 'r')
+        file_read = file.readlines()
+        file.close()
+        line_index = 0
+        for l in file_read:
+            l = l.split("\t")
+            if UID == int(l[0]):
+                print(l[0])
+                del(file_read[line_index])
+                break
+            line_index += 1
+        file = open(data_file, 'w')
+        for l in file_read:
+            file.write(l)
+        file.close()
         print("User ID", UID, "has been removed!\n")
         check = input('Press any key to start again or "Q" to quit...')
         if check == "Q" or check == "q": return
